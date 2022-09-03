@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: test
+data:
+  src: test
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-controller
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: source-controller
+  template:
+    spec:
+      containers:
+        - name: manager
+          env:
+            - name: http_proxy
+              value: $(TEST)
