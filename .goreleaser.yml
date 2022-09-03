@@ -1,0 +1,28 @@
+project_name: kustomize-plgins
+dist: dist
+
+gomod:
+  proxy: true
+
+builds:
+  - main: ./cmd/vars-transformer
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+
+archives:
+  - format: binary
+
+changelog:
+  skip: true
+
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
+
+snapshot:
+  name_template: "{{ .Tag }}"

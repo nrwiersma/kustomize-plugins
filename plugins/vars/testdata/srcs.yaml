@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-controller
+  labels:
+    app: src
+spec:
+  selector:
+    matchLabels:
+      app: source-controller
+  template:
+    spec:
+      containers:
+        - name: manager
+          env:
+            - name: http_proxy
+              value: $(TEST)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: source
+spec:
+  type: ClusterIP
+  selector:
+    app: src
+  ports:
+    - name: src-port
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
