@@ -21,3 +21,12 @@ type SourceNotFoundError struct {
 func (e SourceNotFoundError) Error() string {
 	return fmt.Sprintf("no source found matching %s", e.Name)
 }
+
+// PathNotFoundError is returned if a replacement source path does not exist in the resource.
+type PathNotFoundError struct {
+	Name string
+}
+
+func (e PathNotFoundError) Error() string {
+	return fmt.Sprintf("no source path found matching %s", e.Name)
+}

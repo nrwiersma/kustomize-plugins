@@ -123,7 +123,7 @@ func getSourceValue(name string, src v1alpha1.SourceRef, items []*yaml.RNode) (s
 		return "", err
 	}
 	if rn.YNode().Kind != yaml.ScalarNode {
-		return "", SourceNotFoundError{Name: name}
+		return "", PathNotFoundError{Name: name}
 	}
 	return rn.YNode().Value, nil
 }

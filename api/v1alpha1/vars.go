@@ -21,7 +21,7 @@ type Replacement struct {
 // SourceRef describes a source document and path.
 type SourceRef struct {
 	ObjRef    ObjectRef `json:"objRef" yaml:"objRef"`
-	FieldPath string    `json:"fieldRef" yaml:"fieldRef"`
+	FieldPath string    `json:"fieldPath" yaml:"fieldPath"`
 }
 
 // ObjectRef describes an object.
