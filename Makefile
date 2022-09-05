@@ -17,6 +17,11 @@ build:
 	@find ./cmd/* -maxdepth 1 -type d -exec go build {} \;
 .PHONY: build
 
+# Install the plugins
+install:
+	@go install ./cmd/vars-transformer
+.PHONY: install
+
 # Run all tests
 test:
 	@go test -cover -race ./...

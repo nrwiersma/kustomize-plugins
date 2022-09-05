@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ren
+  labels:
+    app: ren
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: ren
+  template:
+    metadata:
+      labels:
+        app: ren
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: ren
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: ren
+          image: ren:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TEMPLATES
+              value: "https://nrwiersma.github.io/ren-templates/$(NAMESPACE)/"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+

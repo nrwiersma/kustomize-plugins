@@ -5,7 +5,8 @@ gomod:
   proxy: true
 
 builds:
-  - main: ./cmd/vars-transformer
+  - id: vars-transformer
+    main: ./cmd/vars-transformer
     goos:
       - linux
       - darwin
@@ -16,7 +17,14 @@ builds:
       - CGO_ENABLED=0
 
 archives:
-  - format: binary
+  - id: vars-transformer
+    builds:
+      - vars-transformer
+    name_template: 'vars-transformer_{{ .Os }}_{{ .Arch }}'
+    format: binary
+
+release:
+  prerelease: auto
 
 changelog:
   skip: true
