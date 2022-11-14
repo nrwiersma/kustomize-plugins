@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/stretchr/testify v1.8.1
-	k8s.io/apimachinery v0.25.3
+	k8s.io/apimachinery v0.25.4
 	sigs.k8s.io/kustomize/kyaml v0.13.9
 )
 
