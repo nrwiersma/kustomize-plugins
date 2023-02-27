@@ -3,7 +3,7 @@ module github.com/nrwiersma/kustomize-plugins
 go 1.19
 
 require (
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	k8s.io/apimachinery v0.26.1
 	sigs.k8s.io/kustomize/kyaml v0.14.0
 )
